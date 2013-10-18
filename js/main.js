@@ -1,11 +1,11 @@
 var FoodMashup = (function() {
-    var getLocation = function() {
+    var getUserLocation = function() {
         $.getJSON('http://ip-api.com/json', function(data) {
-            console.log ('City: ' + data.city + ', State: ' + data.regionName);
+            $('#searchLocation').val(data.city + ', ' + data.regionName);
         });
     }
     var init = function() {
-        getLocation();
+        getUserLocation();
     };
     return {
         init : function() {
