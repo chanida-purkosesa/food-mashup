@@ -4,17 +4,18 @@ var FoodMashup = (function() {
             var city = data.city;
             var state = data.regionName;
             $('#searchLocation').val(city + ', ' + state);
-            
-            $('#searchForm').submit(function(e) {
-                e.preventDefault();
-                getYelpHighestRated();
-            });
         });
     };
-    var getYelpHighestRated = function() {
-        var searchTerm = $('#searchTerm').val();
-        var searchLocation = $('#searchLocation').val()
-        searchLocation = searchLocation.substr(0, searchLocation.indexOf(','));
+    var submitSearchForm = function() {
+        $('#searchForm').submit(function(e) {
+            e.preventDefault();
+            var searchTerm = $('#searchTerm').val();
+            var searchLocation = $('#searchLocation').val();
+            searchLocation = searchLocation.substr(0, searchLocation.indexOf(','));
+            getYelpHighestRated(searchTerm, searchLocation);
+        });
+    };
+    var getYelpHighestRated = function(searchTerm, searchLocation) {
         var auth = {
             consumerKey: 'wW_Yasb2TdMc4ba-yfO5mA',
             consumerSecret: 'AJ6P7iZGalWwyDD_w5-FfdtgXzg',
@@ -68,6 +69,7 @@ var FoodMashup = (function() {
     };
     var init = function() {
         getUserLocation();
+        submitSearchForm();
     };
     return {
         init : function() {
