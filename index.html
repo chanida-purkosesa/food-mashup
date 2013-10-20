@@ -17,12 +17,15 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-        <form id="searchForm">
-            <input type="text" id="searchTerm" placeholder="Search by restaurant" />
-            <input type="text" id="searchLocation" placeholder="Manhattan, NY" />
-            <button type="submit" id="submit" value="Search">Search</button>
-        </form>
-
+        <section id="searchContainer">
+            <form id="searchForm">
+                <input type="text" id="searchTerm" placeholder="Search by restaurant, cuisine..." />
+                <span class="search-in">in</span>
+                <input type="text" id="searchLocation" placeholder="Manhattan, NY" />
+                <button type="submit" id="submit" value="Search">Search</button>
+            </form>
+        </section>
+        
         <article id="searchResult"></article>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
