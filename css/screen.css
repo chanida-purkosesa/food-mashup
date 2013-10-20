@@ -56,23 +56,28 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 body {
   margin: 0 auto;
-  font: normal 16px arial;
+  font: normal 16px arial, sans-serif;
   width: 960px;
-  background: #eee;
-  color: #444;
+  background: #eeeeee;
+  color: #444444;
+}
+
+.container-padding, #searchContainer, #searchResultsMap, #searchResult .business {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #cccccc;
 }
 
 #searchContainer {
-  margin: 50px 0 20px;
-  padding-bottom: 30px;
+  margin-top: 50px;
   text-align: center;
-  border-bottom: 1px solid #ccc;
+  padding-bottom: 30px;
 }
 #searchContainer input {
   height: 40px;
   font-size: 22px;
   font-weight: bold;
-  color: #444;
+  color: #444444;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -88,7 +93,7 @@ body {
 }
 #searchContainer button {
   height: 40px;
-  font: bold 19px arial;
+  font: bold 19px arial, sans-serif;
   letter-spacing: 1px;
   background: #c90117;
   text-transform: uppercase;
@@ -106,23 +111,16 @@ body {
 
 #searchResultsMap {
   display: none;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
 }
 #searchResultsMap #mapCanvas {
+  border: 2px solid #cccccc;
   width: 960px;
   height: 300px;
 }
 
 #searchResult {
-  font: normal 14px/20px arial;
+  font: normal 14px/20px arial, sans-serif;
   letter-spacing: 1px;
-}
-#searchResult .business {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 20px;
 }
 #searchResult .business.last {
   margin-bottom: 0;
