@@ -6,7 +6,7 @@ var FoodMashup = (function() {
     var getUserLocation = function() {
         $.getJSON('http://ip-api.com/json', function(data) {
             var city = data.city;
-            var state = data.regionName;
+            var state = data.region;
             $('#searchLocation').val(city + ', ' + state);
         });
     };
