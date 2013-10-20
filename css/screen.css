@@ -63,7 +63,7 @@ body {
 }
 
 #searchContainer {
-  margin: 50px 0 30px;
+  margin: 50px 0 20px;
   padding-bottom: 30px;
   text-align: center;
   border-bottom: 1px solid #ccc;
@@ -102,4 +102,25 @@ body {
 #searchContainer .search-in {
   font-size: 20px;
   margin: 0 7px;
+}
+
+#searchResult {
+  font: normal 14px/20px arial;
+  letter-spacing: 1px;
+}
+#searchResult .business {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+#searchResult .business.last {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+#searchResult header h1 {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#searchResult .business-address {
+  margin-top: 20px;
 }

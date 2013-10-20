@@ -16,10 +16,10 @@ var FoodMashup = (function() {
             var searchTerm = $('#searchTerm').val();
             var searchLocation = $('#searchLocation').val();
             searchLocation = searchLocation.substr(0, searchLocation.indexOf(','));
-            getYelpHighestRated(searchTerm, searchLocation);
+            getYelpResults(searchTerm, searchLocation);
         });
     };
-    var getYelpHighestRated = function(searchTerm, searchLocation) {
+    var getYelpResults = function(searchTerm, searchLocation) {
         var auth = {
             consumerKey: 'wW_Yasb2TdMc4ba-yfO5mA',
             consumerSecret: 'AJ6P7iZGalWwyDD_w5-FfdtgXzg',
@@ -39,7 +39,7 @@ var FoodMashup = (function() {
         parameters.push(['location', searchLocation]);
         parameters.push(['offset', 5]);
         parameters.push(['limit', 5]);
-        parameters.push(['sort', 2]);
+        parameters.push(['category_filter', 'food,restaurants']);
         parameters.push(['callback', 'yelpCallback']);
         parameters.push(['oauth_consumer_key', auth.consumerKey]);
         parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
@@ -57,7 +57,6 @@ var FoodMashup = (function() {
 
         var parameterMap = OAuth.getParameterMap(message.parameters);
         parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-        //console.log(parameterMap);
 
         $.ajax({
             url: message.action,
