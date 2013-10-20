@@ -54,6 +54,18 @@ body {
 	}
 }
 
+#searchResultsMap {
+	display: none;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+
+	#mapCanvas {
+		width: 960px;
+		height: 300px;
+	}
+}
+
 #searchResult {
 	font: normal 14px/20px arial;
 	letter-spacing: 1px;

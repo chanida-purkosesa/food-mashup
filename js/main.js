@@ -1,10 +1,12 @@
 var FoodMashup = (function() {
+    var getUserLocation = $.getJSON('http://ip-api.com/json');
+
     var loadTemplate = function() {
         $('body').append('<div id="resultsTpl"></div>');
         $('#resultsTpl').load('results.html');
     };
-    var getUserLocation = function() {
-        $.getJSON('http://ip-api.com/json', function(data) {
+    var setUserLocation = function() {
+        getUserLocation.then(function (data) {
             var city = data.city;
             var state = data.region;
             $('#searchLocation').val(city + ', ' + state);
@@ -68,11 +70,26 @@ var FoodMashup = (function() {
                 var template = _.template($('#resultsTemplate').html(), {'resultSet': data});
                 $('#searchResult').html(template);
                 console.log (data);
+                $('#searchResultsMap').show();
+                $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=getGoogleMap');
             }
         });
     };
+    getGoogleMap = function() {
+        getUserLocation.then(function (data) {
+            var lat = data.lat;
+            var lon = data.lon;
+            
+            var mapOptions = {
+                center: new google.maps.LatLng(lat, lon),
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
+        });
+    };
     var init = function() {
-        getUserLocation();
+        setUserLocation();
         submitSearchForm();
         loadTemplate();
     };
