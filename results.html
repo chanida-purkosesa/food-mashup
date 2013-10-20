@@ -1,0 +1,20 @@
+<script type="text/template" id="resultsTemplate">
+	<section id="infoContainer">
+		<% _.each(resultSet.businesses, function(location, index) { %>
+		<div id="business<%= index %>" class="business">
+			<header>
+				<h1><%= location.name %></h1>
+			</header>
+			<span id="ratings<%= index %>" class="business-ratings"><%= location.rating %></span><br />
+			<span id="numreviews<%= index %>" class="business-numreviews"><%= location.review_count %></span><br />
+			<span id="address<%= index %>" class="business-address"><%= location.location.display_address %></span><br />
+
+			<span id="categories<%= index %>" class="business-categories">
+				<% _.each(resultSet.businesses[index].categories, function(loc, i) { %>
+					<%= loc[0] %><br />
+				<% }); %>
+			</span>
+		</div>
+		<% }); %>
+	</section>
+</script>

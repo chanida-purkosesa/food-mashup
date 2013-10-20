@@ -1,4 +1,8 @@
 var FoodMashup = (function() {
+    var loadTemplate = function() {
+        $('body').append('<div id="resultsTpl"></div>');
+        $('#resultsTpl').load('results.html');
+    };
     var getUserLocation = function() {
         $.getJSON('http://ip-api.com/json', function(data) {
             var city = data.city;
@@ -33,6 +37,7 @@ var FoodMashup = (function() {
         parameters = [];
         parameters.push(['term', searchTerm]);
         parameters.push(['location', searchLocation]);
+        parameters.push(['offset', 5]);
         parameters.push(['limit', 5]);
         parameters.push(['sort', 2]);
         parameters.push(['callback', 'yelpCallback']);
@@ -52,7 +57,7 @@ var FoodMashup = (function() {
 
         var parameterMap = OAuth.getParameterMap(message.parameters);
         parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
-        console.log(parameterMap);
+        //console.log(parameterMap);
 
         $.ajax({
             url: message.action,
@@ -61,15 +66,16 @@ var FoodMashup = (function() {
             dataType: 'jsonp',
             jsonpCallback : 'yelpCallback',
             success: function(data) {
-                $.each(data.businesses, function(index, value) {
-                    console.log (data.businesses[index].name);
-                });
+                var template = _.template($('#resultsTemplate').html(), {'resultSet': data});
+                $('#searchResult').html(template);
+                console.log (data);
             }
         });
     };
     var init = function() {
         getUserLocation();
         submitSearchForm();
+        loadTemplate();
     };
     return {
         init : function() {
