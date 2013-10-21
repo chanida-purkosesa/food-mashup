@@ -62,7 +62,7 @@ body {
   color: #444444;
 }
 
-.container-padding, #searchContainer, #searchResultsMap, #searchResult .business {
+.container-padding, #searchContainer, #searchResultsMap {
   padding-bottom: 20px;
   margin-bottom: 20px;
   border-bottom: 1px solid #cccccc;
@@ -114,22 +114,68 @@ body {
 }
 #searchResultsMap #mapCanvas {
   border: 2px solid #cccccc;
-  width: 960px;
+  width: 956px;
   height: 300px;
 }
 
 #searchResult {
-  font: normal 14px/20px arial, sans-serif;
+  font: normal 12px/17px arial, sans-serif;
   letter-spacing: 1px;
 }
+#searchResult .business {
+  width: 275px;
+  height: 160px;
+  border: 1px solid #cccccc;
+  float: left;
+  margin: 0 19px 20px 0;
+  padding: 15px;
+  border-radius: 5px;
+  background: #fff;
+  color: #666;
+}
 #searchResult .business.last {
-  margin-bottom: 0;
-  border-bottom: 0;
+  margin-right: 0;
+}
+#searchResult header {
+  margin-bottom: 15px;
 }
 #searchResult header h1 {
   font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 5px;
   text-transform: uppercase;
+  color: #444444;
 }
-#searchResult .business-address {
-  margin-top: 20px;
+#searchResult .business-information {
+  width: 160px;
+  float: right;
+}
+#searchResult .business-information .business-categories {
+  font-style: italic;
+}
+#searchResult .business-information .business-address {
+  clear: both;
+  margin-bottom: 15px;
+}
+#searchResult .business-photos {
+  width: 100px;
+  display: block;
+  float: left;
+  margin-right: 15px;
+}
+#searchResult .business-photos img {
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+#searchResult .business-photos a {
+  color: #666;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+#searchResult .business-photos a:hover {
+  color: #999;
+}
+#searchResult .business-photos a:active {
+  color: #aaa;
 }

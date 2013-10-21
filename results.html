@@ -1,21 +1,28 @@
 <script type="text/template" id="resultsTemplate">
 	<% _.each(resultSet.businesses, function(location, index) { %>
-	<section id="business<%= index %>" class="business<%if (resultSet.businesses.length - 1 === index) {%> last<%}%>">
-		<header>
-			<h1><%= location.name %></h1>
-			<div id="categories<%= index %>" class="business-categories">
-				<% _.each(resultSet.businesses[index].categories, function(loc, i) { %>
-					<%= loc[0] %><% if (resultSet.businesses[index].categories.length - 1 !== i) {%>, <%}%>
-				<% }); %>
-			</div>
-		</header>
+	<section id="business<%= index %>" class="business<%if (index % 3 === 2) {%> last<%}%>">
+		<div class="business-information">
+			<header>
+				<h1><%= location.name %></h1>
+				<div id="categories<%= index %>" class="business-categories">
+					<% _.each(resultSet.businesses[index].categories, function(loc, i) { %>
+						<%= loc[0] %><% if (resultSet.businesses[index].categories.length - 1 !== i) {%>, <%}%>
+					<% }); %>
+				</div>
+			</header>
 
-		<div id="address<%= index %>" class="business-address">
-			<%= location.location.address %><br />
-			<%= location.location.city %>, <%= location.location.state_code %> <%= location.location.postal_code %>
+			<div id="address<%= index %>" class="business-address">
+				<%= location.location.address %><br />
+				<%= location.location.city %>, <%= location.location.state_code %> <%= location.location.postal_code %>
+			</div>
+
+			<div id="phone<%= index %>" class="business-phone"><%= location.display_phone %></div>
 		</div>
 
-		<div id="phone<%= index %>" class="business-phone"><%= location.display_phone %></div>
+		<div class="business-photos">
+			<img src="<%= location.image_url %>" class="business-image" />
+			<a href="#" class="business-photolink">View Photos</a>
+		</div>
 	</section>
 	<% }); %>
 </script>

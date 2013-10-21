@@ -39,8 +39,8 @@ var FoodMashup = (function() {
         parameters = [];
         parameters.push(['term', searchTerm]);
         parameters.push(['location', searchLocation]);
-        parameters.push(['offset', 5]);
-        parameters.push(['limit', 5]);
+        parameters.push(['offset', 10]);
+        parameters.push(['limit', 6]);
         parameters.push(['category_filter', 'food,restaurants']);
         parameters.push(['callback', 'yelpCallback']);
         parameters.push(['oauth_consumer_key', auth.consumerKey]);
