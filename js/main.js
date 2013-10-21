@@ -115,12 +115,23 @@ var FoodMashup = (function() {
         $.each(locations, function(index, value) {
             var place = locations[index];
             var placeCoords = new google.maps.LatLng(place[1], place[2]);
+            var image = 'images/marker_white.png';
 
             var marker = new google.maps.Marker({
                 position: placeCoords,
                 map: map,
                 title: place[0],
-                zIndex: place[3]
+                zIndex: place[3],
+                icon: image
+            });
+
+            var markerContent = place[0];
+            var infoWindow = new google.maps.InfoWindow({
+                content: markerContent
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infoWindow.open(map, marker);
             });
 
             bounds.extend(marker.position);
