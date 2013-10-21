@@ -15,7 +15,7 @@ var FoodMashup = (function() {
     var submitSearchForm = function() {
         $('#searchForm').submit(function(e) {
             e.preventDefault();
-            var searchTerm = $('#searchTerm').val();
+            var searchTerm = ($('#searchTerm').val() === '') ? 'restaurants' : $('#searchTerm').val();
             var searchLocation = $('#searchLocation').val();
             searchLocation = searchLocation.substr(0, searchLocation.indexOf(','));
             getYelpResults(searchTerm, searchLocation);
@@ -41,7 +41,7 @@ var FoodMashup = (function() {
         parameters.push(['location', searchLocation]);
         parameters.push(['offset', 10]);
         parameters.push(['limit', 6]);
-        parameters.push(['category_filter', 'food,restaurants']);
+        parameters.push(['category_filter', 'restaurants']);
         parameters.push(['callback', 'yelpCallback']);
         parameters.push(['oauth_consumer_key', auth.consumerKey]);
         parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
