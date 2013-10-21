@@ -75,6 +75,7 @@ var FoodMashup = (function() {
 
                 var template = _.template($('#resultsTemplate').html(), {'resultSet': data});
                 $('#searchResult').html(template);
+                initInstagram();
             }
         });
     };
@@ -137,6 +138,22 @@ var FoodMashup = (function() {
             bounds.extend(marker.position);
         });
         map.fitBounds(bounds);
+    };
+    initInstagram = function() {
+        $('.business-photolink').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'https://api.instagram.com/v1/locations/514276/media/recent?client_id=7452ffb5de05413685274176d55263d6',
+                dataType: 'jsonp',
+                success: function(data) {
+                    console.log (data);
+                    $.each (data, function(index, value) {
+                        //var picture = '<img src=' + data[index].images.standard_resolution.url + ' />';
+                        //$('#searchPhotos').append(picture);
+                    });
+                }
+            });
+        });
     };
     var init = function() {
         setUserLocation();
