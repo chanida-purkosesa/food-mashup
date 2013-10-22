@@ -107,7 +107,7 @@ var FoodMashup = (function() {
                     place = [name, lat, lng];
                     locations.push(place);
 
-                    if (window.google && google.maps && data.businesses.length-1 === index) {
+                    if (window.google && google.maps) {
                         initGoogleMap();
                     }
                 }
