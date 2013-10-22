@@ -72,15 +72,14 @@ var FoodMashup = (function() {
                 if (data.businesses.length !== 0) {
                     locations = [];
                     getGeocode(data);
-                    $('#searchResultsMap').show();
-                    
+                    $('#searchResultsMap').show();                    
                     if (typeof window.google === 'undefined' || typeof google.maps === 'undefined') {
                         $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
                     }                
 
                     var template = _.template($('#resultsTemplate').html(), {'resultSet': data});
-                    $('#searchResult').html(template);    
-                    //initInstagram();
+                    $('#searchResult').html(template);
+                    initInstagram();
                 } else {
                     $('#searchResultsMap').hide();
                     var noResults = '<div class="business-noresults">Sorry, no results were found...</div>';
@@ -155,14 +154,19 @@ var FoodMashup = (function() {
     initInstagram = function() {
         $('.business-photolink').click(function (e) {
             e.preventDefault();
+            var businessElem = $(this).parents('.business').attr('id');
+            var businessIndex = businessElem.replace(/business/, '');
+            var locationsIndex = locations[businessIndex];
+
             $.ajax({
-                url: 'https://api.instagram.com/v1/locations/514276/media/recent?client_id=7452ffb5de05413685274176d55263d6',
+                url: 'https://api.instagram.com/v1/locations/514276/media/recent?&client_id=7452ffb5de05413685274176d55263d6',
                 dataType: 'jsonp',
-                success: function(data) {
-                    console.log (data);
-                    $.each (data, function(index, value) {
-                        //var picture = '<img src=' + data[index].images.standard_resolution.url + ' />';
-                        //$('#searchPhotos').append(picture);
+                success: function(jsonData) {
+                    console.log (jsonData);
+                    $.each (jsonData.data, function(index, value) {
+                        var picture = '<img src=' + jsonData.data[index].images.standard_resolution.url + ' />';
+                        console.log (picture);
+                        $('#searchPhotos').append(picture);
                     });
                 }
             });
