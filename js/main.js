@@ -15,9 +15,11 @@ var FoodMashup = (function() {
     var submitSearchForm = function() {
         $('#searchForm').submit(function(e) {
             e.preventDefault();
-            var searchTerm = ($('#searchTerm').val() === '') ? 'restaurants' : $('#searchTerm').val();
+            var searchTermElem = $('#searchTerm');
+            var searchTerm = (searchTermElem.val() === '') ? 'restaurants' : searchTermElem.val();
             var searchLocation = $('#searchLocation').val();
-            searchLocation = searchLocation.substr(0, searchLocation.indexOf(','));
+            searchTerm = searchTerm.replace(/ /g, '+');
+            searchLocation = searchLocation.replace(/ /g, '+');
             getYelpResults(searchTerm, searchLocation);
         });
     };
