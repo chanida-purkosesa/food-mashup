@@ -179,3 +179,11 @@ body {
 #searchResult .business-photos a:active {
   color: #aaa;
 }
+#searchResult .business-noresults {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  color: #c90117;
+  margin-top: 50px;
+}

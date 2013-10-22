@@ -67,17 +67,23 @@ var FoodMashup = (function() {
             dataType: 'jsonp',
             jsonpCallback : 'yelpCallback',
             success: function(data) {
-                locations = [];
-                getGeocode(data);
-                $('#searchResultsMap').show();
-                
-                if (typeof window.google === 'undefined' || typeof google.maps === 'undefined') {
-                    $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
-                }                
+                if (data.businesses.length !== 0) {
+                    locations = [];
+                    getGeocode(data);
+                    $('#searchResultsMap').show();
+                    
+                    if (typeof window.google === 'undefined' || typeof google.maps === 'undefined') {
+                        $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
+                    }                
 
-                var template = _.template($('#resultsTemplate').html(), {'resultSet': data});
-                $('#searchResult').html(template);
-                //initInstagram();
+                    var template = _.template($('#resultsTemplate').html(), {'resultSet': data});
+                    $('#searchResult').html(template);    
+                    //initInstagram();
+                } else {
+                    $('#searchResultsMap').hide();
+                    var noResults = '<div class="business-noresults">Sorry, no results were found...</div>';
+                    $('#searchResult').empty().append(noResults);
+                }
             }
         });
     };

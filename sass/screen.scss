@@ -6,6 +6,7 @@ $default-color: #444;
 $default-color-bg: #eee;
 $default-border-color: #ccc;
 $default-border-radius: 5px;
+$default-color-secondary: #c90117;
 
 body {
 	margin: 0 auto;
@@ -51,7 +52,7 @@ body {
 		height: 40px;
 		font: bold 19px $default-font;
 		letter-spacing: 1px;
-		background: #c90117;
+		background: $default-color-secondary;
 		text-transform: uppercase;
 		color: #fff;
 		border-radius: $default-border-radius;
@@ -148,5 +149,14 @@ body {
 				color: #aaa;
 			}
 		}
+	}
+
+	.business-noresults {
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 20px;
+		color: $default-color-secondary;
+		margin-top: 50px;
 	}
 }
