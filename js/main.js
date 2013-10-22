@@ -67,15 +67,17 @@ var FoodMashup = (function() {
             dataType: 'jsonp',
             jsonpCallback : 'yelpCallback',
             success: function(data) {
-                console.log (data);
                 locations = [];
                 getGeocode(data);
                 $('#searchResultsMap').show();
-                $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
+                
+                if (typeof window.google === 'undefined' || typeof google.maps === 'undefined') {
+                    $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
+                }                
 
                 var template = _.template($('#resultsTemplate').html(), {'resultSet': data});
                 $('#searchResult').html(template);
-                initInstagram();
+                //initInstagram();
             }
         });
     };
@@ -96,8 +98,12 @@ var FoodMashup = (function() {
                 success: function(dataCoords) {
                     var lat = dataCoords.results[0].geometry.location.lat;
                     var lng = dataCoords.results[0].geometry.location.lng;
-                    place = [name, lat, lng, ++index];
+                    place = [name, lat, lng];
                     locations.push(place);
+
+                    if (window.google && google.maps && data.businesses.length-1 === index) {
+                        initGoogleMap();
+                    }
                 }
             });
         });
@@ -122,7 +128,6 @@ var FoodMashup = (function() {
                 position: placeCoords,
                 map: map,
                 title: place[0],
-                zIndex: place[3],
                 icon: image
             });
 
