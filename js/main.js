@@ -109,7 +109,7 @@ var FoodMashup = (function() {
                     place = [name, lat, lng];
                     locations.push(place);
 
-                    if (window.google && google.maps) {
+                    if (window.google && google.maps && locations.length === 6) {
                         initGoogleMap();
                     }
                 }
