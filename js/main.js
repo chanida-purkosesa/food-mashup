@@ -81,6 +81,7 @@ var FoodMashup = (function() {
                     searchResultsElem.addClass('container-padding').show();
                     $('#searchPhotos').empty().show();
                     $('#searchResultsMap').show();
+                    scrollToAnimation('searchResultsMap');
 
                     if (typeof window.google === 'undefined' || typeof google.maps === 'undefined') {
                         $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
@@ -92,7 +93,7 @@ var FoodMashup = (function() {
                 } else {
                     $('#searchResultsMap, #searchPhotos').hide();
                     noResultsErrorHandler('searchResult', 'Sorry, no results were found...');
-                    $('#searchResult').removeClass('container-padding');
+                    searchResultsElem.removeClass('container-padding');
                 }
             }
         });
@@ -169,11 +170,13 @@ var FoodMashup = (function() {
 
                     if (data.response.venues.length > 0) {
                         initInstagram (data.response.venues[0].id, locationsIndex[0]);
+                        scrollToAnimation ('searchResult');
                     }  else {
                         noResultsErrorHandler('searchPhotos', 'Sorry, no photos were found...'); 
                     }
                 }  
-             });
+            });
+            return false;
         });
     };
     initInstagram = function(venueId, venueName) {
@@ -203,6 +206,14 @@ var FoodMashup = (function() {
                 });
             }
         });
+    };
+    scrollToAnimation = function(divId) {
+        var marginBottom = parseInt($('.container-padding').css('margin-bottom'));
+        var divTop = $('#' + divId).offset().top - marginBottom;
+
+        $('body').animate({
+            scrollTop: divTop
+        }, 1500);
     };
     var init = function() {
         setUserLocation();
