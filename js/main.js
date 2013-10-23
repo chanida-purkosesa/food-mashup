@@ -173,7 +173,6 @@ var FoodMashup = (function() {
 
                         if (data.response.venues.length > 0) {
                             initInstagram (data.response.venues[0].id, locationsIndex[0]);
-                            scrollToAnimation ('searchResult');
                         }  else {
                             noResultsErrorHandler('searchPhotos', 'Sorry, no photos were found...'); 
                         }
@@ -207,6 +206,7 @@ var FoodMashup = (function() {
                     var picture = '<img src=' + jsonData.data[index].images.standard_resolution.url + ' />';
                     searchPhotosElem.append(picture);
                 });
+                scrollToAnimation ('searchResult');
             }
         });
     };
