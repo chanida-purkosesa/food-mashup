@@ -72,7 +72,7 @@ var FoodMashup = (function() {
                 if (data.businesses.length !== 0) {
                     locations = [];
                     getGeocode(data);
-                    $('#searchResultsMap').show();                    
+                    $('#searchResultsMap, #searchResult').show();                    
                     if (typeof window.google === 'undefined' || typeof google.maps === 'undefined') {
                         $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
                     }                
@@ -162,6 +162,7 @@ var FoodMashup = (function() {
                 url: 'https://api.foursquare.com/v2/venues/search?query=' + locationsIndex[0] + '&ll=' + locationsIndex[1] + ',' + locationsIndex[2] + 
                      '&intent=match&client_id=R3RSYCCFJRLEQQZNQNH1PIWYOXAH0XTZ4T3XTQP4VAZU0CDN&client_secret=JJFMZK4BZBEBNV0Q3XHLTWT3DKNXCBNMV1A2WTMPHSVKFDES&v=20131022',
                 success: function(data) {
+                    $('#searchPhotos').empty();
                     console.log (data);
                     initInstagram (data.response.venues[0].id);
                 }  
@@ -174,20 +175,22 @@ var FoodMashup = (function() {
             url: 'https://api.instagram.com/v1/locations/search?foursquare_v2_id=' + venueId + '&client_id=7452ffb5de05413685274176d55263d6',
             dataType: 'jsonp',
             success: function(jsonData) {
-                getInstagramPhoto(jsonData.data[0].id);
+                console.log (jsonData);
+                getInstagramPhoto(jsonData.data[0].id, jsonData.data[0].name);
             }
         });
     };
-    getInstagramPhoto = function(venueId) {
+    getInstagramPhoto = function(venueId, venueName) {
         $.ajax({
             url: 'https://api.instagram.com/v1/locations/' + venueId + '/media/recent?&client_id=7452ffb5de05413685274176d55263d6',
             dataType: 'jsonp',
             success: function(jsonData) {
-                console.log (jsonData);
+                var searchPhotosElem = $('#searchPhotos');
+                searchPhotosElem.append('<h1>' + venueName + '</h1>');
+
                 $.each (jsonData.data, function(index, value) {
                     var picture = '<img src=' + jsonData.data[index].images.standard_resolution.url + ' />';
-                    console.log (picture);
-                    $('#searchPhotos').append(picture);
+                    searchPhotosElem.append(picture);
                 });
             }
         });

@@ -22,6 +22,15 @@ body {
 	border-bottom: 1px solid $default-border-color;
 }
 
+.header-style {
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 20px;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+	color: $default-color;
+}
+
 #searchContainer {
 	margin-top: 50px;
 	text-align: center;
@@ -80,8 +89,11 @@ body {
 }
 
 #searchResult {
+	height: 404px;
 	font: normal 12px/17px $default-font;
 	letter-spacing: 1px;
+	@extend .container-padding;
+	display: none;
 
 	.business {
 		width: 275px;
@@ -103,12 +115,7 @@ body {
 		margin-bottom: 15px;
 
 		h1 {
-			font-weight: bold;
-			font-size: 16px;
-			line-height: 20px;
-			margin-bottom: 5px;
-			text-transform: uppercase;
-			color: $default-color;
+			@extend .header-style;
 		}
 	}
 
@@ -158,5 +165,20 @@ body {
 		font-size: 20px;
 		color: $default-color-secondary;
 		margin-top: 50px;
+	}
+}
+
+#searchPhotos {
+	text-align: center;
+
+	h1 {
+		@extend .header-style;
+		margin-bottom: 20px;
+		letter-spacing: 1px;
+	}
+
+	img {
+		border-radius: $default-border-radius;
+		border: 1px solid $default-border-color;
 	}
 }

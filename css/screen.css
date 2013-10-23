@@ -62,10 +62,19 @@ body {
   color: #444444;
 }
 
-.container-padding, #searchContainer, #searchResultsMap {
+.container-padding, #searchContainer, #searchResultsMap, #searchResult {
   padding-bottom: 20px;
   margin-bottom: 20px;
   border-bottom: 1px solid #cccccc;
+}
+
+.header-style, #searchResult header h1, #searchPhotos h1 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  color: #444444;
 }
 
 #searchContainer {
@@ -119,8 +128,10 @@ body {
 }
 
 #searchResult {
+  height: 404px;
   font: normal 12px/17px arial, sans-serif;
   letter-spacing: 1px;
+  display: none;
 }
 #searchResult .business {
   width: 275px;
@@ -138,14 +149,6 @@ body {
 }
 #searchResult header {
   margin-bottom: 15px;
-}
-#searchResult header h1 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-  color: #444444;
 }
 #searchResult .business-information {
   width: 160px;
@@ -186,4 +189,16 @@ body {
   font-size: 20px;
   color: #c90117;
   margin-top: 50px;
+}
+
+#searchPhotos {
+  text-align: center;
+}
+#searchPhotos h1 {
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+#searchPhotos img {
+  border-radius: 5px;
+  border: 1px solid #cccccc;
 }
