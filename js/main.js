@@ -72,6 +72,7 @@ var FoodMashup = (function() {
                 if (data.businesses.length !== 0) {
                     locations = [];
                     getGeocode(data);
+                    $('#searchPhotos').empty();
                     $('#searchResultsMap, #searchResult').show();                    
                     if (typeof window.google === 'undefined' || typeof google.maps === 'undefined') {
                         $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
