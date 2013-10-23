@@ -163,7 +163,7 @@ var FoodMashup = (function() {
                      '&intent=match&client_id=R3RSYCCFJRLEQQZNQNH1PIWYOXAH0XTZ4T3XTQP4VAZU0CDN&client_secret=JJFMZK4BZBEBNV0Q3XHLTWT3DKNXCBNMV1A2WTMPHSVKFDES&v=20131022',
                 success: function(data) {
                     console.log (data);
-                    //initInstagram (data.response.venues[0].id);
+                    initInstagram (data.response.venues[0].id);
                 }  
              });
         });
@@ -171,7 +171,16 @@ var FoodMashup = (function() {
     initInstagram = function(venueId) {
         console.log (venueId);
         $.ajax({
-            url: 'https://api.instagram.com/v1/locations/514276/media/recent?&client_id=7452ffb5de05413685274176d55263d6',
+            url: 'https://api.instagram.com/v1/locations/search?foursquare_v2_id=' + venueId + '&client_id=7452ffb5de05413685274176d55263d6',
+            dataType: 'jsonp',
+            success: function(jsonData) {
+                getInstagramPhoto(jsonData.data[0].id);
+            }
+        });
+    };
+    getInstagramPhoto = function(venueId) {
+        $.ajax({
+            url: 'https://api.instagram.com/v1/locations/' + venueId + '/media/recent?&client_id=7452ffb5de05413685274176d55263d6',
             dataType: 'jsonp',
             success: function(jsonData) {
                 console.log (jsonData);
