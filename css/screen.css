@@ -62,7 +62,7 @@ body {
   color: #444444;
 }
 
-.container-padding, #searchContainer, #searchResultsMap, #searchResult {
+.container-padding, #searchContainer, #searchResultsMap {
   padding-bottom: 20px;
   margin-bottom: 20px;
   border-bottom: 1px solid #cccccc;

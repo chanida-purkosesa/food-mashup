@@ -69,22 +69,26 @@ var FoodMashup = (function() {
             dataType: 'jsonp',
             jsonpCallback : 'yelpCallback',
             success: function(data) {
+                var searchResultsElem = $('#searchResult');
+
                 if (data.businesses.length !== 0) {
                     locations = [];
                     getGeocode(data);
-                    $('#searchPhotos').empty();
-                    $('#searchResultsMap, #searchResult').show();                    
+                    searchResultsElem.addClass('container-padding').show();
+                    $('#searchPhotos').empty().show();
+                    $('#searchResultsMap').show();
+
                     if (typeof window.google === 'undefined' || typeof google.maps === 'undefined') {
                         $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
                     }                
 
                     var template = _.template($('#resultsTemplate').html(), {'resultSet': data});
-                    $('#searchResult').html(template);
+                    searchResultsElem.html(template);
                     getFoursquareVenueID();
                 } else {
-                    $('#searchResultsMap').hide();
+                    $('#searchResultsMap, #searchPhotos').hide();
                     var noResults = '<div class="business-noresults">Sorry, no results were found...</div>';
-                    $('#searchResult').empty().append(noResults);
+                    $('#searchResult').empty().removeClass('container-padding').append(noResults);
                 }
             }
         });
@@ -155,23 +159,23 @@ var FoodMashup = (function() {
                      '&intent=match&client_id=R3RSYCCFJRLEQQZNQNH1PIWYOXAH0XTZ4T3XTQP4VAZU0CDN&client_secret=JJFMZK4BZBEBNV0Q3XHLTWT3DKNXCBNMV1A2WTMPHSVKFDES&v=20131022',
                 success: function(data) {
                     $('#searchPhotos').empty();
-                    console.log (data);
+                    console.log (data.response.venues[0].id);
 
                     if (data.response.venues.length > 0) {
-                        initInstagram (data.response.venues[0].id);
+                        initInstagram (data.response.venues[0].id, locationsIndex[0]);
                     }  
                 }  
              });
         });
     };
-    initInstagram = function(venueId) {
+    initInstagram = function(venueId, venueName) {
         console.log (venueId);
         $.ajax({
             url: 'https://api.instagram.com/v1/locations/search?foursquare_v2_id=' + venueId + '&client_id=7452ffb5de05413685274176d55263d6',
             dataType: 'jsonp',
             success: function(jsonData) {
                 console.log (jsonData);
-                getInstagramPhoto(jsonData.data[0].id, jsonData.data[0].name);
+                getInstagramPhoto(jsonData.data[0].id, venueName);
             }
         });
     };

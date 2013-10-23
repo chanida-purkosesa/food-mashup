@@ -92,7 +92,6 @@ body {
 	height: 404px;
 	font: normal 12px/17px $default-font;
 	letter-spacing: 1px;
-	@extend .container-padding;
 	display: none;
 
 	.business {
