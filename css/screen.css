@@ -159,6 +159,9 @@ body {
 #searchResult .business.selected {
   border-color: #c90117;
 }
+#searchResult .business.selected h1 {
+  color: #c90117;
+}
 #searchResult header {
   margin-bottom: 15px;
 }
@@ -197,6 +200,9 @@ body {
 
 #searchPhotos {
   text-align: center;
+}
+#searchPhotos.results {
+  min-height: 600px;
 }
 #searchPhotos h1 {
   margin-bottom: 20px;

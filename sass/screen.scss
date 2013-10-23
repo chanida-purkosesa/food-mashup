@@ -119,6 +119,10 @@ body {
 		}
 		&.selected {
 			border-color: $default-color-secondary;
+
+			h1 {
+				color: $default-color-secondary;
+			}
 		}
 	}
 
@@ -177,6 +181,9 @@ body {
 #searchPhotos {
 	text-align: center;
 
+	&.results {
+		min-height: 600px;
+	}
 	h1 {
 		@extend .header-style;
 		margin-bottom: 20px;

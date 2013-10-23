@@ -74,14 +74,16 @@ var FoodMashup = (function() {
             jsonpCallback : 'yelpCallback',
             success: function(data) {
                 var searchResultsElem = $('#searchResult');
+                var searchPhotosElem = $('#searchPhotos');
 
                 if (data.businesses.length !== 0) {
                     locations = [];
                     getGeocode(data);
                     searchResultsElem.addClass('container-padding').show();
-                    $('#searchPhotos').empty().show();
+                    searchPhotosElem.empty().show();
                     $('#searchResultsMap').show();
                     scrollToAnimation('searchResultsMap');
+                    searchPhotosElem.removeClass();
 
                     if (typeof window.google === 'undefined' || typeof google.maps === 'undefined') {
                         $.getScript('http://maps.googleapis.com/maps/api/js?key=AIzaSyBwu1ysynoW9TdftIqqo8gtcmFcEAuqtCY&sensor=false&callback=initGoogleMap');
@@ -160,23 +162,24 @@ var FoodMashup = (function() {
             var businessIndex = businessElemId.replace(/business/, '');
             var locationsIndex = locations[businessIndex];
             businessElem.siblings().removeClass('selected');
-            businessElem.addClass('selected');
 
-            $.ajax({
-                url: 'https://api.foursquare.com/v2/venues/search?query=' + locationsIndex[0] + '&ll=' + locationsIndex[1] + ',' + locationsIndex[2] + 
-                     '&intent=match&client_id=R3RSYCCFJRLEQQZNQNH1PIWYOXAH0XTZ4T3XTQP4VAZU0CDN&client_secret=JJFMZK4BZBEBNV0Q3XHLTWT3DKNXCBNMV1A2WTMPHSVKFDES&v=20131022',
-                success: function(data) {
-                    $('#searchPhotos').empty();
+            if (!$('#' + businessElemId).hasClass('selected')) {
+                $.ajax({
+                    url: 'https://api.foursquare.com/v2/venues/search?query=' + locationsIndex[0] + '&ll=' + locationsIndex[1] + ',' + locationsIndex[2] + 
+                         '&intent=match&client_id=R3RSYCCFJRLEQQZNQNH1PIWYOXAH0XTZ4T3XTQP4VAZU0CDN&client_secret=JJFMZK4BZBEBNV0Q3XHLTWT3DKNXCBNMV1A2WTMPHSVKFDES&v=20131022',
+                    success: function(data) {
+                        businessElem.addClass('selected');
+                        $('#searchPhotos').empty();
 
-                    if (data.response.venues.length > 0) {
-                        initInstagram (data.response.venues[0].id, locationsIndex[0]);
-                        scrollToAnimation ('searchResult');
-                    }  else {
-                        noResultsErrorHandler('searchPhotos', 'Sorry, no photos were found...'); 
-                    }
-                }  
-            });
-            return false;
+                        if (data.response.venues.length > 0) {
+                            initInstagram (data.response.venues[0].id, locationsIndex[0]);
+                            scrollToAnimation ('searchResult');
+                        }  else {
+                            noResultsErrorHandler('searchPhotos', 'Sorry, no photos were found...'); 
+                        }
+                    }  
+                });
+            }
         });
     };
     initInstagram = function(venueId, venueName) {
@@ -198,7 +201,7 @@ var FoodMashup = (function() {
             dataType: 'jsonp',
             success: function(jsonData) {
                 var searchPhotosElem = $('#searchPhotos');
-                searchPhotosElem.append('<h1>' + venueName + '</h1>');
+                searchPhotosElem.addClass('results').append('<h1>' + venueName + '</h1>');
 
                 $.each (jsonData.data, function(index, value) {
                     var picture = '<img src=' + jsonData.data[index].images.standard_resolution.url + ' />';
@@ -211,9 +214,10 @@ var FoodMashup = (function() {
         var marginBottom = parseInt($('.container-padding').css('margin-bottom'));
         var divTop = $('#' + divId).offset().top - marginBottom;
 
-        $('body').animate({
+        $('html, body').animate({
             scrollTop: divTop
-        }, 1500);
+        }, 1000);
+    
     };
     var init = function() {
         setUserLocation();
