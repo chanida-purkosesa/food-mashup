@@ -177,7 +177,6 @@ var FoodMashup = (function() {
         });
     };
     initInstagram = function(venueId, venueName) {
-        console.log (venueId);
         $.ajax({
             url: 'https://api.instagram.com/v1/locations/search?foursquare_v2_id=' + venueId + '&client_id=7452ffb5de05413685274176d55263d6',
             dataType: 'jsonp',
