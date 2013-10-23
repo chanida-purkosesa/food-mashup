@@ -156,7 +156,10 @@ var FoodMashup = (function() {
                 success: function(data) {
                     $('#searchPhotos').empty();
                     console.log (data);
-                    initInstagram (data.response.venues[0].id);
+
+                    if (data.response.venues.length > 0) {
+                        initInstagram (data.response.venues[0].id);
+                    }  
                 }  
              });
         });
