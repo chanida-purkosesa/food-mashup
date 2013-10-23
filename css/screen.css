@@ -77,6 +77,15 @@ body {
   color: #444444;
 }
 
+.noresults-message, #searchResult .noresults, #searchPhotos .noresults {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  color: #c90117;
+  margin-top: 50px;
+}
+
 #searchContainer {
   margin-top: 50px;
   text-align: center;
@@ -147,6 +156,9 @@ body {
 #searchResult .business.last {
   margin-right: 0;
 }
+#searchResult .business.selected {
+  border-color: #c90117;
+}
 #searchResult header {
   margin-bottom: 15px;
 }
@@ -182,14 +194,6 @@ body {
 #searchResult .business-photos a:active {
   color: #aaa;
 }
-#searchResult .business-noresults {
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 20px;
-  color: #c90117;
-  margin-top: 50px;
-}
 
 #searchPhotos {
   text-align: center;
@@ -197,8 +201,12 @@ body {
 #searchPhotos h1 {
   margin-bottom: 20px;
   letter-spacing: 1px;
+  color: #c90117;
 }
 #searchPhotos img {
   border-radius: 5px;
   border: 1px solid #cccccc;
+}
+#searchPhotos .noresults {
+  margin-bottom: 50px;
 }

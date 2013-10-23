@@ -31,6 +31,15 @@ body {
 	color: $default-color;
 }
 
+.noresults-message {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 20px;
+	color: $default-color-secondary;
+	margin-top: 50px;
+}
+
 #searchContainer {
 	margin-top: 50px;
 	text-align: center;
@@ -108,6 +117,9 @@ body {
 		&.last {
 			margin-right: 0;
 		}
+		&.selected {
+			border-color: $default-color-secondary;
+		}
 	}
 
 	header {
@@ -157,13 +169,8 @@ body {
 		}
 	}
 
-	.business-noresults {
-		text-align: center;
-		text-transform: uppercase;
-		font-weight: bold;
-		font-size: 20px;
-		color: $default-color-secondary;
-		margin-top: 50px;
+	.noresults {
+		@extend .noresults-message;
 	}
 }
 
@@ -174,10 +181,16 @@ body {
 		@extend .header-style;
 		margin-bottom: 20px;
 		letter-spacing: 1px;
+		color: $default-color-secondary;
 	}
 
 	img {
 		border-radius: $default-border-radius;
 		border: 1px solid $default-border-color;
+	}
+
+	.noresults {
+		@extend .noresults-message;
+		margin-bottom: 50px;
 	}
 }
