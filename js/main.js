@@ -42,7 +42,7 @@ var FoodMashup = (function() {
             tokenSecret: auth.accessTokenSecret
         };
 
-        parameters = [];
+        var parameters = [];
         parameters.push(['term', searchTerm]);
         parameters.push(['location', searchLocation]);
         parameters.push(['offset', 10]);
@@ -64,7 +64,7 @@ var FoodMashup = (function() {
         OAuth.SignatureMethod.sign(message, accessor);
 
         var parameterMap = OAuth.getParameterMap(message.parameters);
-        parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature)
+        parameterMap.oauth_signature = OAuth.percentEncode(parameterMap.oauth_signature);
 
         $.ajax({
             url: message.action,
@@ -228,7 +228,7 @@ var FoodMashup = (function() {
         init : function() {
             init();
         }
-    }
+    };
 })();
 
 $(document).ready(function() {
