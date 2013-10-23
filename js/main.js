@@ -138,15 +138,6 @@ var FoodMashup = (function() {
                 icon: image
             });
 
-            var markerContent = place[0];
-            var infoWindow = new google.maps.InfoWindow({
-                content: markerContent
-            });
-
-            google.maps.event.addListener(marker, 'click', function() {
-                infoWindow.open(map, marker);
-            });
-
             bounds.extend(marker.position);
         });
         map.fitBounds(bounds);
