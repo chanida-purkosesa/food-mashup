@@ -62,9 +62,13 @@ body {
   color: #444444;
 }
 
+#mashed #mashedLogo {
+  margin: 20px 0 0;
+}
+
 .container-padding, #searchContainer, #searchResultsMap {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
   border-bottom: 1px solid #cccccc;
 }
 
@@ -87,9 +91,10 @@ body {
 }
 
 #searchContainer {
-  margin-top: 50px;
+  margin-top: 40px;
   text-align: center;
-  padding-bottom: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #cccccc;
 }
 #searchContainer input {
   height: 40px;

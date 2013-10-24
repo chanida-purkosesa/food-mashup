@@ -16,9 +16,15 @@ body {
 	color: $default-color;
 }
 
+#mashed {
+	#mashedLogo {
+		margin: 20px 0 0;
+	}
+}
+
 .container-padding {
-	padding-bottom: 20px;
-	margin-bottom: 20px;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
 	border-bottom: 1px solid $default-border-color;
 }
 
@@ -41,10 +47,11 @@ body {
 }
 
 #searchContainer {
-	margin-top: 50px;
+	margin-top: 40px;
 	text-align: center;
 	@extend .container-padding;
-	padding-bottom: 30px;
+	padding-top: 30px;
+	border-top: 1px solid $default-border-color;
 
 	input {
 		height: 40px;
