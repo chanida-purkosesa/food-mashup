@@ -114,6 +114,7 @@ var FoodMashup = (function() {
             $.ajax({
                 url: 'http://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&sensor=false',
                 dataType: 'json',
+                async: false,
                 success: function(dataCoords) {
                     var lat = dataCoords.results[0].geometry.location.lat;
                     var lng = dataCoords.results[0].geometry.location.lng;
